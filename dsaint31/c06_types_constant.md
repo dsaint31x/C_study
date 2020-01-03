@@ -40,10 +40,11 @@
    * `float`는 일반적으로 의료 데이터의 저장포맷. 데이터 크기 면에서 장점을 보이므로 영상데이터들은 보통 float임.
 
 | type | bytes | 
-|---|---|---|
+|---|---|
 |float | 4 bytes |
 |double | 8 bytes |
 |long double | 16 bytes |
+
 * (gcc 7.4.0 64bit, Mint)
 
 ```c
@@ -122,6 +123,7 @@ int main(void)
 ```
 
 * 자료형을 정해주는 접미사.
+
    |접미사 | 자료형 |  |
    |---|---|---|
    |u | unsigned int | unsigned int ui = 1024u; |
@@ -172,7 +174,7 @@ int main(void)
    * `char` op `char` > `int` op `int`
    * `char` op `int` > `int` op `int`
    * `int` op `double` > `double` op `double`
-   * `char` op `double` > `char` op `double`
+   * `char` op `double` > `double` op `double`
 * 기본적으로 정수는 `int`로, 실수는 `double`임. 
 * 묵시적으로 형변환시 큰 표현범위의 `type`으로 변환됨.
 * `assign`의 경우엔, 왼쪽의 `type` 에 맞추어 변환됨. (데이터 손실 발생할 수 있음.)
