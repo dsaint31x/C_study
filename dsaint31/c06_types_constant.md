@@ -40,10 +40,11 @@
    * `float`는 일반적으로 의료 데이터의 저장포맷. 데이터 크기 면에서 장점을 보이므로 영상데이터들은 보통 float임.
 
 | type | bytes | 
-|---|---|---|
+|---|---|
 |float | 4 bytes |
 |double | 8 bytes |
 |long double | 16 bytes |
+
 * (gcc 7.4.0 64bit, Mint)
 
 ```c
@@ -122,6 +123,7 @@ int main(void)
 ```
 
 * 자료형을 정해주는 접미사.
+
    |접미사 | 자료형 |  |
    |---|---|---|
    |u | unsigned int | unsigned int ui = 1024u; |
