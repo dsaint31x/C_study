@@ -174,7 +174,7 @@ int main(void)
    * `char` op `char` > `int` op `int`
    * `char` op `int` > `int` op `int`
    * `int` op `double` > `double` op `double`
-   * `char` op `double` > `char` op `double`
+   * `char` op `double` > `double` op `double`
 * 기본적으로 정수는 `int`로, 실수는 `double`임. 
 * 묵시적으로 형변환시 큰 표현범위의 `type`으로 변환됨.
 * `assign`의 경우엔, 왼쪽의 `type` 에 맞추어 변환됨. (데이터 손실 발생할 수 있음.)
