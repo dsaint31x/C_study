@@ -26,8 +26,8 @@ int main(void) {
 }
 ```
 ```
-array_name: 0000006AD4AFF7C8
-first index: 0000006AD4AFF7C8
+array_name: 0000006AD4AFF7C8 // 배열 이름과 첫 번째 인덱스의 주소값이 같다.
+first index: 0000006AD4AFF7C8  // 인덱스 값이 1씩(int 형) 차이나기 때문에 주소값이 4씩 차이난다.
 second index: 0000006AD4AFF7CC
 third index: 0000006AD4AFF7D0
 ```    
