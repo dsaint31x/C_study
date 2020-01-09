@@ -37,7 +37,7 @@ int main(void) {
 ```
 ```
 array_name: 0000006AD4AFF7C8 // 배열 이름과 첫 번째 인덱스의 주소값이 같다.
-first index: 0000006AD4AFF7C8  // 인덱스 값이 1씩(int 형) 차이나기 때문에 주소값이 4씩 차이난다.
+first index: 0000006AD4AFF7C8  // int형(크기: 4바이트)이기 때문에 주소값이 4씩 차이난다.
 second index: 0000006AD4AFF7CC
 third index: 0000006AD4AFF7D0
 ```    
@@ -106,7 +106,7 @@ arr[0]=1, arr[1]=2, arr[2]=3, arr[3]=4;
 
 3.
     ```int arr3[5]={1,2};```  
-    첫 번쨰 인덱스부터 순차적으로 값을 채워나가되, 채울 값이 존재하지 않는 나머지 인덱스들은 0으로 채워진다. 
+    첫 번 인덱스부터 순차적으로 값을 채워나가되, 채울 값이 존재하지 않는 나머지 인덱스들은 0으로 채워진다. 
 
 ### **<array_init.c>**
 ```c
@@ -173,7 +173,7 @@ int main(void) {
 		scanf_s("%d", &arr[i]);
 		printf("%d \n", arr[i]);
 		if (arr[i] < min) {
-			min =arr[i];
+			min = arr[i];
 		}
 		if (arr[i] > max) {
 			max = arr[i];
@@ -219,7 +219,7 @@ Good time
 ```char str[14]="Good morning!";```  
 * 위와 같은 코드로 배열에 문자열 저장 가능  
 * 배열의 길이 정보 생략 가능
-* 문자형이 저장된 char형 배열의 길이는 문자열의 끝에 '\0'(null문자)이라는 escape sequence가 자동으로 삽입돼 실제 *문자열의 길이+1*이다.
+* 문자이 저장된 char형 배열의 길이는 문자열의 끝에 '\0'(null문자)이라는 escape sequence가 자동으로 삽입돼 실제 *문자열의 길이+1*이다.
     * 널문자를 이용해 문자열의 끝을 표시 (메모리상에서 문자열은 이진 데이터로 저장되기 때문에 문자열의 시작과 끝을 표시해 주지 않으면 문자열 구분 X)
 
 ### **<array_string.c>**
@@ -354,7 +354,7 @@ int main(void) {
 
 	for (i = 0; i < word_len / 2; i++) {
 		temp = word[i];
-		word[i] = word[(word_len - i) - 1];
+		word[i] = word[(word_len - i) - 1]; // -1은 널문자를 제외하기 위해
 		word[(word_len - i) - 1]=temp;
 	}
 	printf("뒤집힌 영단어: %s \n", word);
