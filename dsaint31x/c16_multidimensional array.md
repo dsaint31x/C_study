@@ -29,8 +29,7 @@ printf("세로길이가 8 가로길이가 9 높이가 10인 배열크기 : %d \n
 return 0;
 }
 ```
-
->> ~이미지 삽입필요~
+![3개](https://postfiles.pstatic.net/MjAyMDAxMTdfNzYg/MDAxNTc5MTkxNzY3MzUw.FU0Z-QgMyGb-aDZJPmHZgAEiad6TUYLc7kSsqtT5KRYg.3pefQOqRek_VJ9HQZL3JtiPQzuRx_u81v3xBycDjy7kg.PNG.luckeun0713/%EB%B0%B0%EC%97%B4%ED%81%AC%EA%B8%B0%EC%84%A0%EC%96%B8%EC%97%86%EC%9D%B4%EC%A0%80%EC%9E%A5.PNG?type=w580)
 
 ### 2차원 배열요소의 접근
 int형 배열을 대상으로 세로n번째위치 가로m번째 위치에 저장된 값을 변경 및 참조하는 방법을 
@@ -50,7 +49,7 @@ int main(void)
 		return 0;
 }
 ```
->> ~이미지 삽입 필요~  
+>> ![text](https://postfiles.pstatic.net/MjAyMDAxMTdfMjM4/MDAxNTc5MTkxMzI5NTI2.3Mfmyys5zv21aG5BHabnsHloISLzEYCiSI1vDhkaZVgg.IIS_sTJ0697qb9FpzgHmQ0o7hGIKO8N6V73mgMDfZI4g.PNG.luckeun0713/3%EC%B0%A8%EC%9B%90%EB%B0%B0%EC%97%B4.PNG?type=w580)  
 ### 2차원 배열의 메모리상 할당의 형태
 우리가 사용하고 있는 컴퓨터의 메모리는 2차원적 구조가 아니다.  
 이는 메모리 주소값을 통해서 알 수 있다.  
@@ -60,22 +59,23 @@ int main(void)
 
 예를 들어서 0~5으로 초기화 된 세로길이3 가로길이2인 2차원 배열인 int arr[3][2] 메모리상의 구조는  
 
-0x1000 **0** arr[0][0]
-0x1004 **1** arr[0][1]
-0x1008 **2**arr[1][0]
-0x100c **3**arr[1][1] 
-0x1010 **4**arr[2][0]
-0x1014 **5**arr[2][1]
-
+0x1000 **0** arr[0][0]  
+0x1004 **1** arr[0][1]  
+0x1008 **2** arr[1][0]  
+0x100c **3** arr[1][1]   
+0x1010 **4** arr[2][0]  
+0x1014 **5** arr[2][1]  
+  
 으로 나타낼 수 있다.  
 
- |1열 인덱스값[0]|2열 인덱스값[1]
---- |--- |--- |
-1행 인덱스값[0]|0 [0][0]|1 [0][1]|
-2행 인덱스값[1]|2 [1][0]|3 [1][1]|
-3행 인덱스값[2]|4 [2][0]|5 [2][3]|
+||1열[0]|2열[1]|
+|------|---|---|
+|1행[0]|0[0][0]|1[0][1]|
+|2행[1]|2[1][0]|3[1][1]|
+|3행[2]|4[2][0]|5[2][1]|
 
->> ~이미지넣는법~
+![표](https://postfiles.pstatic.net/MjAyMDAxMTdfNDkg/MDAxNTc5MTkxMzQyMjM3.L3d5P5CVBua6t3zmbsYZtRPD1mqN0fj4lrhrnY3BuKIg.A4Ev1bQ2rXfLmW7lf4KbnhgOLKfp5RtTqI-Ky3MAPj8g.PNG.luckeun0713/%EB%B0%B0%EC%97%B41.PNG?type=w580)
+
 
 ```c
 #include <stdio.h>
@@ -90,15 +90,18 @@ printf("%p\n",&arr1[i][k]);
 return 0;
 }
 ```
+![주소값](https://postfiles.pstatic.net/MjAyMDAxMTdfMTYw/MDAxNTc5MTkyMTU1MzI2.8JeQBgViqHeUrZALzNbIm90n0jcKM9kw88_yclg0hTQg.o4TXLEQ6XV1Di0SC2hoQBoylFXxORPwnZHg6rg1XdbQg.PNG.luckeun0713/%EC%A3%BC%EC%86%8C%EA%B0%92.PNG?type=w580)
+
+
 ## 실행화면  
-***0082FD5C  
+0082FD5C  
 0082FD60  
 0082FD64  
 0082FD68  
 0082FD6C  
 0082FD70    
 C:\Users\박은영\source\repos\Project1\Debug\Project1.exe(7392 프로세스)이(가) 0 코드로 인해 종료되었습니다.  
-이 창을 닫으려면 아무 키나 누르세요.***  
+이 창을 닫으려면 아무 키나 누르세요.
  
  ## 2차원 배열 선언과 동시에 초기화하기
  1차원 배열과 마찬가지로 2차원 배열도 선언과 동시에 초기화가 가능하다.  
@@ -190,7 +193,7 @@ int main(void)
 }
 ```
 
-출력사진 캡쳐본.
+![출력사진](https://postfiles.pstatic.net/MjAyMDAxMTdfOTYg/MDAxNTc5MTkxMzM0NTg2.mgC0AzL0axVrvMn_AQ1Yp97kl2ml2-otx6b3QoeKjgwg.TgMitnsq2HgUzdAQUp_RGSsqAjJVsr1RorrqK_OC0n8g.PNG.luckeun0713/%EC%BA%A1%EC%B2%98.PNG?type=w580)
 
 ## 배열의 크기를 알려주지 않고 초기화하기
 
@@ -220,7 +223,7 @@ int main(void)
 	return 0;
 	}
 ```
-
+![3차원1](https://postfiles.pstatic.net/MjAyMDAxMTdfNzYg/MDAxNTc5MTkxNzY3MzUw.FU0Z-QgMyGb-aDZJPmHZgAEiad6TUYLc7kSsqtT5KRYg.3pefQOqRek_VJ9HQZL3JtiPQzuRx_u81v3xBycDjy7kg.PNG.luckeun0713/%EB%B0%B0%EC%97%B4%ED%81%AC%EA%B8%B0%EC%84%A0%EC%96%B8%EC%97%86%EC%9D%B4%EC%A0%80%EC%9E%A5.PNG?type=w580)
 
  # 3차원 배열
  ### 3차원 배열의 논리적구조
@@ -245,15 +248,19 @@ int main(void)
 	}
 	
 ```
-
+![3차원2](https://postfiles.pstatic.net/MjAyMDAxMTdfODUg/MDAxNTc5MTkxODA5NTkx.MzL8sRGQXPNdU8a1m2KvMg4kz6GrswuymwfZeYtIfRcg.3yAA9qhIjUQgFqu4bm7kjAYL49QE1n0Mvhow3QSiXzYg.PNG.luckeun0713/int_%EB%8D%94%EB%B8%94%EB%B0%B0%EC%97%B4.PNG?type=w580)
 ### 3차원 배열의 선언과 접근 
 3차원 배열은 2차원 배열이 여러개 모여있는 형태로 이해하는 것이 합리적이다.
 
 int record [3][3][2] ; 은  
 int record2[3][2]가 3개 겹쳐져있는 것으로 이해하는 편이 낫다.
+
+![참고](https://postfiles.pstatic.net/MjAyMDAxMTdfNTIg/MDAxNTc5MTkyNjA1MTE5.cAv4cajFxjxXsE-sgVNbTOVb7Z7Pdh5KcyEtNIwF49Ug.F7Yb27sY9yZJQb6ZQ4b6r3tAXtcEvYy1aFlmW9tcWXEg.JPEG.luckeun0713/KakaoTalk_20200117_013100425.jpg?type=w580)
+
+# 수고많으셨습니다~^^
  
  
->> ~이미지 삽입필요~
+
 
 
 
