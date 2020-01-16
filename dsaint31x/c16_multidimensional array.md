@@ -49,7 +49,7 @@ int main(void)
 		return 0;
 }
 ```
->> ![text](https://postfiles.pstatic.net/MjAyMDAxMTdfMjM4/MDAxNTc5MTkxMzI5NTI2.3Mfmyys5zv21aG5BHabnsHloISLzEYCiSI1vDhkaZVgg.IIS_sTJ0697qb9FpzgHmQ0o7hGIKO8N6V73mgMDfZI4g.PNG.luckeun0713/3%EC%B0%A8%EC%9B%90%EB%B0%B0%EC%97%B4.PNG?type=w580)  
+>> ![text](https://postfiles.pstatic.net/MjAyMDAxMTdfMTIy/MDAxNTc5MTkyODU5ODg5.ym80IK-MElVOhIjKBWFDzhgxZB4v5gvpRsZQFO6VbC8g.OGBQG2zVfpUbL4z_0lcvJQ-2RwclD_on7eXZ_mX00IEg.PNG.luckeun0713/%EB%A7%88%EC%A7%80%EB%A7%89.PNG?type=w580)  
 ### 2차원 배열의 메모리상 할당의 형태
 우리가 사용하고 있는 컴퓨터의 메모리는 2차원적 구조가 아니다.  
 이는 메모리 주소값을 통해서 알 수 있다.  
