@@ -1,0 +1,1176 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "Python_08 파일읽고쓰기",
+      "provenance": [],
+      "collapsed_sections": [],
+      "authorship_tag": "ABX9TyP2fGA+Gtjrd6FNwBQQwbUu",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "accelerator": "GPU"
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/dsaint31x/C_study/blob/master/dsaint31x/intro_python/2019_winter/Python_08_file%20reaing%20and%20writing%20ipynb\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "mUx6U1PvpdvR",
+        "colab_type": "text"
+      },
+      "source": [
+        "#파일 읽고 쓰기\n",
+        "\n",
+        "프로그램이 종료된 후에도 데이터를 계속 유지하려면 파일로 저장해야 한다.\n",
+        "파일의 내용은 하나의 문자열 값으로 생각할 수 있으며 그 크기는 기가바이트가 될 수도 있다.\n",
+        "\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "FkQzIwhba_dv",
+        "colab_type": "text"
+      },
+      "source": [
+        ""
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "iYI-DIdqfYR6",
+        "colab_type": "text"
+      },
+      "source": [
+        "> 파이썬 프로그래밍으로 지루한 작업 자동화하기 p.195"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "eMyaWQc1EyKa",
+        "colab_type": "text"
+      },
+      "source": [
+        "#윈도우에서는 백슬래시, OS X와 리눅스에서는 슬래시\n",
+        "\n",
+        "원도우경로서는 폴더 이름사이의 구분 기호로 백슬래시 ( \\ )[딜리미터]를 사용한다.\n",
+        "그러나 OS X나 리눅스는 경로 구분 기호로 슬래시(/)를 사용한다.\n",
+        ">c언어의 경우 경로구분 기호 문자열변경필요/파이썬은 변경 X  \n",
+        "\n",
+        "#os.path.join()\n",
+        "경로의 개별 파일과 폴더 이름의 문자열 값을 이 함수에 전달하면 os.path.join()는 올바른 경로 구분 기호를 사용한 파일 경로 문자열을 돌려준다."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "fXyKhTzIGJls",
+        "colab_type": "code",
+        "outputId": "76090671-258c-407b-ad3b-bef3134ba2c5",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 34
+        }
+      },
+      "source": [
+        "import os\n",
+        "os.path.join('usr','bin','spam')"
+      ],
+      "execution_count": 0,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "'usr/bin/spam'"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 10
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "ERMmRd_zGmuY",
+        "colab_type": "text"
+      },
+      "source": [
+        "파일 이름에 대한 문자열을 만들어야 하는 경우 os.path.join()함수가 사용된다.  \n",
+        "리스트 안에 있는 것을 연결.  권하지 않는 코드.\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "BidQ9cV7G08r",
+        "colab_type": "code",
+        "outputId": "892ad176-cc12-4108-99a9-d7ba59cd5930",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 34
+        }
+      },
+      "source": [
+        "# ROOT_DIR='C:\\\\root\\\\intro_python' #for window\n",
+        "ROOT_DIR='/content' #for linux\n",
+        "ROOT_DIR=os.getcwd()\n",
+        "myfiles=['test1.txt']\n",
+        "for filenames in myfiles:\n",
+        "  print(os.path.join(ROOT_DIR,filenames))"
+      ],
+      "execution_count": 0,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "/content/sample_data/test1.txt\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "Hxfqm7gocbwq",
+        "colab_type": "code",
+        "outputId": "d43bc1f0-448f-49ac-b08b-232a7f0baf6b",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 70
+        }
+      },
+      "source": [
+        "!ls\n",
+        "!pwd\n",
+        "!cwd"
+      ],
+      "execution_count": 0,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "sample_data\n",
+            "/content\n",
+            "/bin/bash: cwd: command not found\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "F1-GsSAOIl4Z",
+        "colab_type": "text"
+      },
+      "source": [
+        "#현재 작업 디렉토리\n",
+        "컴퓨터에서 실행되는 모든 프로그램은 현재 작업디렉토리(파일)또는 CWD가 있다.  \n",
+        "루트폴더로 시작하지 않는 모든 파일 이름이나 경로는 현재 디렉토리에 있는 것으로 가정한다.  \n",
+        "**os.getcwd()** 함수로 현재 작업 디렉토리를 문자열 값으로 얻을 수 있으며 **os.chdir** 로는 현재 작업 디렉토리를 바꿀 수 있다.\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "p1SaOrbldmHh",
+        "colab_type": "code",
+        "colab": {}
+      },
+      "source": [
+        "\n",
+        "os.chdir('/content/.config') #절대경로"
+      ],
+      "execution_count": 0,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "DM6-CNvcg8nz",
+        "colab_type": "code",
+        "colab": {}
+      },
+      "source": [
+        "os.chdir('./.config') #상대경로"
+      ],
+      "execution_count": 0,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "rpP7cw81fYkq",
+        "colab_type": "code",
+        "outputId": "8ab1df45-50ab-44f5-a488-c27e22e2772b",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 105
+        }
+      },
+      "source": [
+        "!ls -al #리눅스"
+      ],
+      "execution_count": 0,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "total 16\n",
+            "drwxr-xr-x 1 root root 4096 Jan 13 16:38 .\n",
+            "drwxr-xr-x 1 root root 4096 Feb  1 00:58 ..\n",
+            "drwxr-xr-x 1 root root 4096 Jan 16 16:43 .config\n",
+            "drwxr-xr-x 1 root root 4096 Jan 13 16:38 sample_data\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "8SgpPd85JPNr",
+        "colab_type": "code",
+        "outputId": "6e730560-df7e-4dc5-ea78-df886169dc3b",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 34
+        }
+      },
+      "source": [
+        "import os\n",
+        "os.getcwd()\n"
+      ],
+      "execution_count": 0,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "'/content'"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 26
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "4jhsAw3WKUuJ",
+        "colab_type": "text"
+      },
+      "source": [
+        "#상대경로 절대경로\n",
+        "상대경로와 절대경로 모두 파일 경로를 지정하는 방법이다.  \n",
+        "상대경로의 경우 프로그램의 현재 작업 디렉토리를 기준으로 한다.  \n",
+        "절대경로의 경우 항상 루트폴더로 시작한다.  \n",
+        "루트폴더란 c://과 같은 것. 리눅스 사용 체제에 사용됨  \n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "UW26bBAVKsDZ",
+        "colab_type": "text"
+      },
+      "source": [
+        "#os.makedirs()에 새폴더 만들기\n",
+        "os.makedir()함수로 새폴더(디렉토리)를 만들 수 있다.  "
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "2VAZ9WbdK74O",
+        "colab_type": "code",
+        "colab": {}
+      },
+      "source": [
+        "import os\n",
+        "os.makedirs('c:\\\\hi\\\\iam\\\\young')\n"
+      ],
+      "execution_count": 0,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "sCv5Ra_jK7nO",
+        "colab_type": "text"
+      },
+      "source": [
+        "전체 경로가 존재하도록 보장하기 위해 필요한 중간 폴더를 모두 만든다."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "xcDxai6ALeU-",
+        "colab_type": "text"
+      },
+      "source": [
+        "#os.path 모듈 \n",
+        "os모듈의 내부모듈이기 때문에 import.os만 실행하면 가져올 수 있다.  \n",
+        "모든 스트립트의 시작부분에 그리고 IDLE를 다시 시작할 때에는 언제나 **이 모듈을 가져오는 것**을 잊지말아야한다.  \n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "x49TpZ9AL8m_",
+        "colab_type": "text"
+      },
+      "source": [
+        "#절대 및 상대 경로 다루기\n",
+        "os.path 모듈은 상대 경로의 절대 경로를 돌려주는 함수와 전달 받은 경로가 절대 경로인지 여부를 검사하는 함수를 제공한다.  \n",
+        "\n",
+        "\n",
+        "*   os.path.abspath(path) 함수를 호출하면 매개변수의 절대 경로 문자열을 돌려준다.  이는 상대 경로를 절대경로로 변환하는 쉬운 방법이다.\n",
+        "\n",
+        "*   os.path.isabs(path)함수를 호출하면 매개변수가 절대 경로 일때 True를 상대경로일때 False를 돌려준다.\n",
+        "* os.path.relpath(path,start)함수를 호출하면 start경로로 시작하는 path의 상대경로 문자열을 돌려준다.  start -> path 로 가는경로를 설명해주는 것이다.\n",
+        "start가 제공되지 않으면 현재 작업 디렉토리가 시작경로로 사용된다.\n",
+        "\n",
+        "os.path.relpath()\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "_EjGrgyTNHB5",
+        "colab_type": "code",
+        "outputId": "3c992c1d-de23-482f-cd26-180b0d6b293b",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 34
+        }
+      },
+      "source": [
+        "os.path.abspath('.')"
+      ],
+      "execution_count": 0,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "'/content'"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 30
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "IiVXQ06VNNYJ",
+        "colab_type": "code",
+        "outputId": "8e8c6703-d832-4ecf-a057-93db883c6ce3",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 34
+        }
+      },
+      "source": [
+        "os.path.abspath('./Scripts')"
+      ],
+      "execution_count": 0,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "'/content/Scripts'"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 32
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "ntB6f_BFiMQs",
+        "colab_type": "code",
+        "outputId": "36f1be24-7a1d-490f-da70-9bc3f573a04f",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 34
+        }
+      },
+      "source": [
+        "os.path.relpath('/')"
+      ],
+      "execution_count": 0,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "'..'"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 36
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "rKKGpKHN8cXh",
+        "colab_type": "text"
+      },
+      "source": [
+        "#파일크기와 폴더 내용 찾기\n",
+        "특정 파일과 폴더에 대한 정보를 수집하는 일을 시작할 수 있다.  \n",
+        "os.path 모듈은 파일의 바이트 단위 크기를 알아내고 지정된 폴더 안에 있는 파일과 폴더를 찾는 기능을 제공한다.  \n",
+        "  \n",
+        "*  os.path.getsize(path) 함수를 호출하면 path 매개변수 안에 있는 파일의 크기를 바이트 단위로 돌려준다.  \n",
+        "*   os.listdir(path)함수를 부르면 path 매개변수의 각 파일에 대한 파일 이름 문자열의 리스트를 돌려준다. (OS모듈에 있다.)\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "9uST4vHVjYlE",
+        "colab_type": "code",
+        "outputId": "79bc36f3-1105-4e08-bcd8-7c172eb7366d",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 34
+        }
+      },
+      "source": [
+        "os.path.getsize('/content/.config/')"
+      ],
+      "execution_count": 0,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "4096"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 44
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "xIKGNHaDkUcE",
+        "colab_type": "code",
+        "outputId": "f7e70517-8eee-4a59-a343-1bbd13e8e337",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 193
+        }
+      },
+      "source": [
+        "os.chdir('/content/sample_data')\n",
+        "!ls -al\n",
+        "os.path.getsize('/content/sample_data/README.md')"
+      ],
+      "execution_count": 0,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "total 55512\n",
+            "drwxr-xr-x 1 root root     4096 Jan 13 16:38 .\n",
+            "drwxr-xr-x 1 root root     4096 Jan 13 16:38 ..\n",
+            "-rwxr-xr-x 1 root root     1697 Jan  1  2000 anscombe.json\n",
+            "-rw-r--r-- 1 root root   301141 Jan 13 16:38 california_housing_test.csv\n",
+            "-rw-r--r-- 1 root root  1706430 Jan 13 16:38 california_housing_train.csv\n",
+            "-rw-r--r-- 1 root root 18289443 Jan 13 16:38 mnist_test.csv\n",
+            "-rw-r--r-- 1 root root 36523880 Jan 13 16:38 mnist_train_small.csv\n",
+            "-rwxr-xr-x 1 root root      930 Jan  1  2000 README.md\n"
+          ],
+          "name": "stdout"
+        },
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "930"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 49
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "4ImOKVgy-PoH",
+        "colab_type": "text"
+      },
+      "source": [
+        "# 경로의 유효성 확인\n",
+        "존재하지 않는 경로를 전달할 경우 많은 파이썬 함수는 오류를 일으키고 중단한다.  \n",
+        "경로가 존재하고 있는지, 그 경로가 파일인지 폴더인지 여부를 확인하는 기능을  os.path 모듈은 제공한다.  \n",
+        "\n",
+        "\n",
+        "*  os.path.exists(path) 함수를 호출했을 때 매개변수가 가르키는 파일 또는 폴더가 \n",
+        "존재하면 true를, 그렇지 않다면 false를 돌려준다.  \n",
+        "*  os.path.isfile(path)함수를 호출했을때 path 매개변수가 존재하며 파일이라면 True를 False를 돌려준다.  \n",
+        "*  os.path.isdir(path) 함수를 호출하면 path 매개변수가 존재하며 폴더라면 True를 그렇지 않다면  False를 돌려준다.  \n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "WhNFcQJtB52T",
+        "colab_type": "text"
+      },
+      "source": [
+        "#파일 읽기 쓰기 프로세스 \n",
+        "##파일의 종류 \n",
+        "*  일반 텍스트파일 \n",
+        ">기본텍스트파일만이 포함되며 파일 색상 글꼴 색깔정보와 같은 것은 포함되지 않는다. 보통 문자열 값으로 다룰 수 있다.  \n",
+        " 예시)  txt확장자가 붙은 file 이나  .py 확장자가 붙은 파이썬 스크립트 파일 \n",
+        " 윈도우의 메모장이나 OS X의 텍스트 편집기 프로그램과 같은 것으로 열 수 있다.<\n",
+        "\n",
+        "\n",
+        "\n",
+        " *  이진파일\n",
+        " > 워드프로세서문서, pdf, 이미지, 스프레드 시드 및 실행 프로그램과 같은 여러가지 형식이 있다.  "
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "jhuHH2EBIlNB",
+        "colab_type": "text"
+      },
+      "source": [
+        "# 파이썬에서 파일을 읽거나 쓰기 위한 세가지 단계 \n",
+        "1. open()함수를 호출하여 File 객체를 돌려받는다.\n",
+        "2. File 객체의 read() 또는 write() 메소드를 부른다.\n",
+        "3. File 객체의 close()메소드를 불러서 파일을 닫는다. "
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "Kf2al-XyJMtr",
+        "colab_type": "text"
+      },
+      "source": [
+        "# open()함수를 사용하여 파일 열기\n",
+        "열고자하는 파일을 가르키는 문자열 경로를 전달해야한다.   \n",
+        "문자열경로는 상대경로 절대경로 둘 다 가능하다.  \n",
+        "open()함수는 File 객체를 돌려준다.  \n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "gTrcuZ9IM-fa",
+        "colab_type": "code",
+        "outputId": "8b135814-ea90-4015-8092-36583285e4cf",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 34
+        }
+      },
+      "source": [
+        "os.chdir('/content/sample_data/')\n",
+        "file = open('./README.md','r')\n",
+        "rstr = file.read()\n",
+        "print(rstr)\n",
+        "file.close() #반드시 닫아줘야 할 필요가 있다. 가장 중요해요."
+      ],
+      "execution_count": 0,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "kZcsETGksaCR",
+        "colab_type": "code",
+        "outputId": "400ae65e-7e69-46f2-f853-4dcbd648eec5",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 34
+        }
+      },
+      "source": [
+        "\n",
+        "file = open('/bom.txt', 'r')\n",
+        "str=file.read()\n",
+        "print(str)\n",
+        "file.close()"
+      ],
+      "execution_count": 0,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "abcdefg\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "UY7OHD5-to7K",
+        "colab_type": "code",
+        "outputId": "eb766b04-13d0-4c41-9cad-707433ecebbb",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 193
+        }
+      },
+      "source": [
+        "!ls"
+      ],
+      "execution_count": 0,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "bin\t\t\t\t\t   home   sbin\n",
+            "bom\t\t\t\t\t   lib\t  srv\n",
+            "bom.txt\t\t\t\t\t   lib32  swift\n",
+            "boot\t\t\t\t\t   lib64  sys\n",
+            "content\t\t\t\t\t   media  tensorflow-2.1.0\n",
+            "datalab\t\t\t\t\t   mnt\t  tmp\n",
+            "dev\t\t\t\t\t   opt\t  tools\n",
+            "dlib-19.18.0-cp27-cp27mu-linux_x86_64.whl  proc   usr\n",
+            "dlib-19.18.0-cp36-cp36m-linux_x86_64.whl   root   var\n",
+            "etc\t\t\t\t\t   run\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "iocNiaMbtuKh",
+        "colab_type": "code",
+        "outputId": "92ea04ac-c792-4079-d12e-be3233b662eb",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 34
+        }
+      },
+      "source": [
+        "!cat bom.txt"
+      ],
+      "execution_count": 0,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "abcdefg"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "bizr3NGBssyJ",
+        "colab_type": "code",
+        "colab": {}
+      },
+      "source": [
+        "os.chdir('/')"
+      ],
+      "execution_count": 0,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "Qicsl5Qfoc5v",
+        "colab_type": "code",
+        "outputId": "b8072a36-3696-4d6f-b8ab-5f11fa5705af",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 580
+        }
+      },
+      "source": [
+        "!ls -al"
+      ],
+      "execution_count": 0,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "total 7912\n",
+            "drwxr-xr-x   1 root root    4096 Feb  1 03:02 .\n",
+            "drwxr-xr-x   1 root root    4096 Feb  1 03:02 ..\n",
+            "drwxr-xr-x   1 root root    4096 Dec 18 16:45 bin\n",
+            "-rw-r--r--   1 root root       0 Feb  1 03:02 bom\n",
+            "drwxr-xr-x   2 root root    4096 Apr 24  2018 boot\n",
+            "drwxr-xr-x   1 root root    4096 Jan 13 16:38 content\n",
+            "drwxr-xr-x   1 root root    4096 Jan 27 16:40 datalab\n",
+            "drwxr-xr-x   5 root root     360 Feb  1 00:58 dev\n",
+            "-rw-r--r--   1 root root 3989833 Jan 16 16:44 dlib-19.18.0-cp27-cp27mu-linux_x86_64.whl\n",
+            "-rw-r--r--   1 root root 3997028 Jan 16 16:44 dlib-19.18.0-cp36-cp36m-linux_x86_64.whl\n",
+            "-rwxr-xr-x   1 root root       0 Feb  1 00:58 .dockerenv\n",
+            "drwxr-xr-x   1 root root    4096 Feb  1 00:58 etc\n",
+            "drwxr-xr-x   2 root root    4096 Apr 24  2018 home\n",
+            "drwxr-xr-x   1 root root    4096 Dec 18 16:47 lib\n",
+            "drwxr-xr-x   2 root root    4096 Dec 18 16:43 lib32\n",
+            "drwxr-xr-x   2 root root    4096 Oct 29 21:25 lib64\n",
+            "drwxr-xr-x   2 root root    4096 Oct 29 21:25 media\n",
+            "drwxr-xr-x   2 root root    4096 Oct 29 21:25 mnt\n",
+            "drwxr-xr-x   1 root root    4096 Dec 18 16:48 opt\n",
+            "dr-xr-xr-x 104 root root       0 Feb  1 00:58 proc\n",
+            "drwx------   1 root root    4096 Feb  1 00:58 root\n",
+            "drwxr-xr-x   1 root root    4096 Dec 18 16:45 run\n",
+            "drwxr-xr-x   1 root root    4096 Dec 18 16:46 sbin\n",
+            "drwxr-xr-x   2 root root    4096 Oct 29 21:25 srv\n",
+            "drwxr-xr-x   4 root root    4096 Jan 16 17:15 swift\n",
+            "dr-xr-xr-x  12 root root       0 Feb  1 00:58 sys\n",
+            "drwxr-xr-x   4 root root    4096 Jan 16 17:10 tensorflow-2.1.0\n",
+            "drwxrwxrwt   1 root root    4096 Feb  1 00:58 tmp\n",
+            "drwxr-xr-x   1 root root    4096 Jan 27 16:40 tools\n",
+            "drwxr-xr-x   1 root root    4096 Dec 18 16:48 usr\n",
+            "drwxr-xr-x   1 root root    4096 Feb  1 00:58 var\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "JgJJ8y_9tKja",
+        "colab_type": "code",
+        "colab": {}
+      },
+      "source": [
+        "restr = "
+      ],
+      "execution_count": 0,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "VUF7k2fSOMoh",
+        "colab_type": "text"
+      },
+      "source": [
+        "파일 읽기모드 'r' 나 쓰기모드 'w' 추가모드 'a'를 open()의 두번째 매개변수에 넣으면 정확한 모드가 지칭된다.\n",
+        "  \n",
+        "파일을 열면 File 객체를 돌려받는다.  \n",
+        " 이것은 컴퓨터에 있는 파일에 해당한다. 파이썬에서는 또 다른 값의 리스트나 사전과 굉장히 비슷하다.  "
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "8kaijMg4O9KQ",
+        "colab_type": "text"
+      },
+      "source": [
+        "#파일의 내용읽기 \n",
+        "파일전체를 문자열 값으로 읽고 싶다면 File객체의 read()메소드를 사용한다. \n",
+        "파일의 문자열을 돌려주게 될 것이다.   \n",
+        "다른방법으로 readlines()메소드를 사용할 수 있다.\n",
+        "줄바꿈으로 네 줄이 있는 텍스트파일을 열었을때에는 줄바꿈문자 \\n으로 끝난다. "
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "q_vsgpTfPpkl",
+        "colab_type": "text"
+      },
+      "source": [
+        "# 파일에 쓰기\n",
+        "\n",
+        "읽기모드로 쓴 파일에는 쓸 수 없다. \n",
+        "\n",
+        "**그러나 일반텍스트 쓰기모드나 일반텍스트 추가모드로 파일을 열고 쓴다면 새 값으로 변수의 값을 덮어 쓸 때처럼 기존파일을 덮어쓰고 처음부터 시작한다.**  \n",
+        "\n",
+        "\n",
+        "open()에 전달한 파일 이름이 존재하지 않는 경우 쓰기모드와 추가모드는 새 파일을 만든다.   \n",
+        "파일을 읽거나 쓰고 난 뒤에는 close()메소드를 호출하고 나서 파일을 다시 연다. "
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "PXvAUvXoWu1L",
+        "colab_type": "text"
+      },
+      "source": [
+        "#shelve 모듈로 변수 저장하기\n",
+        "이진 파이썬 프로그램에서 선반(shelf) 파일에 변수를 저장할 수 있다.   \n",
+        "이 방법으로 프로그램은 하드 드라이브에서 변수 데이터를 복원할 수 있다. 저장 및 열기기능을 추가할 수 있다.  "
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "xWxD_9PeP31g",
+        "colab_type": "text"
+      },
+      "source": [
+        "#print.pformat()함수로 변수 저장하기\n",
+        "\n",
+        "같은 문자열을 출력하는 대신 문자열로 돌려준다.\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "C2_HEseTQMXx",
+        "colab_type": "code",
+        "outputId": "edcfa005-4858-49e9-8edc-4a0b9ec33f88",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 34
+        }
+      },
+      "source": [
+        "import pprint\n",
+        "cat = [{'name':'eun','yong':'bin'},{'name':'pooka','yong':'fluffy'}]\n",
+        "pprint.pformat(cat)\n"
+      ],
+      "execution_count": 0,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "\"[{'name': 'eun', 'yong': 'bin'}, {'name': 'pooka', 'yong': 'fluffy'}]\""
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 4
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "pNJtogILvG9C",
+        "colab_type": "code",
+        "colab": {}
+      },
+      "source": [
+        "file = open()"
+      ],
+      "execution_count": 0,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "WCCFzOqM_rGq",
+        "colab_type": "text"
+      },
+      "source": [
+        "# 보강자료 colab uploading to file ! 코랩에 파일 올리기\n",
+        "주의 사항\n",
+        "1. 파일을 꼭 닫아주기 \n",
+        "2. 코랩의 가상환경에 읽을 파일 생성\n",
+        "3. 파일생성 위치확인 \n",
+        "4. 파일을 열어서  내용 쓰고 읽은 후 닫기.  \n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "bPgM_0hZH9eM",
+        "colab_type": "code",
+        "outputId": "f5837a9a-66dd-48da-daea-1888e4ba22fd",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 35
+        }
+      },
+      "source": [
+        "!pwd"
+      ],
+      "execution_count": 37,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "/content\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "FcOKv8YI2eyz",
+        "colab_type": "code",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 35
+        },
+        "outputId": "43a3d4ce-3cf0-4e24-fea6-3cef3269d8c1"
+      },
+      "source": [
+        "import os\n",
+        "os.getcwd() #현재작업디렉토리"
+      ],
+      "execution_count": 38,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "'/content'"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 38
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "bw6o8mTlJdMo",
+        "colab_type": "code",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 35
+        },
+        "outputId": "83a98bd2-af7e-4540-a2c1-df10ee91ab42"
+      },
+      "source": [
+        "os.path.getsize('/content')"
+      ],
+      "execution_count": 39,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "4096"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 39
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "O8-O9fRbDTOb",
+        "colab_type": "code",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 35
+        },
+        "outputId": "628997e0-74d9-40ec-a0f7-ad5d4f9a58e9"
+      },
+      "source": [
+        "\n",
+        "os.listdir('/content')\n"
+      ],
+      "execution_count": 40,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "['.config', 'hello.txt', 'sample_data']"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 40
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "uRj3z6kJDh03",
+        "colab_type": "code",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 35
+        },
+        "outputId": "28437a87-6141-4c74-e0e6-49e2931093af"
+      },
+      "source": [
+        "i=open('/content/hello.txt','w')\n",
+        "i.write('hello!\\n')\n"
+      ],
+      "execution_count": 41,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "7"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 41
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "ZOi7lYqBG-xA",
+        "colab_type": "code",
+        "colab": {}
+      },
+      "source": [
+        "i.close()"
+      ],
+      "execution_count": 0,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "27krHYHLHD6V",
+        "colab_type": "code",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 35
+        },
+        "outputId": "7d43671c-9f2c-48d2-cd91-4393165c113a"
+      },
+      "source": [
+        "i=open('hello.txt','a')\n",
+        "i.write('I am strong.\\n')"
+      ],
+      "execution_count": 43,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "13"
+            ]
+          },
+          "metadata": {
+            "tags": []
+          },
+          "execution_count": 43
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "phhjsESlHha4",
+        "colab_type": "code",
+        "colab": {}
+      },
+      "source": [
+        "i.close()"
+      ],
+      "execution_count": 0,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "YBnBHk7QHjHB",
+        "colab_type": "code",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 71
+        },
+        "outputId": "4f19f521-7e5e-4686-9ca4-1be47e6823b0"
+      },
+      "source": [
+        "i=open('hello.txt','r')\n",
+        "content=i.read()\n",
+        "i.close()\n",
+        "print(content)\n"
+      ],
+      "execution_count": 45,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "hello!\n",
+            "I am strong.\n",
+            "\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    }
+  ]
+}
